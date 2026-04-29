@@ -63,20 +63,34 @@ function showSuccessAndRedirect(title, message, redirectUrl, buttonText = "Conti
     });
 }
 
+function updateCartBadge() {
+    const cartBadge = document.querySelector("#cartBadge");
+
+    if (!cartBadge) {
+        return;
+    }
+
+    const cart = JSON.parse(localStorage.getItem("eshop_cart")) || [];
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    cartBadge.textContent = totalItems;
+    cartBadge.hidden = totalItems === 0;
+}
+
 if (menuToggle && mainMenu) {
-    menuToggle.addEventListener("click", function () {
+    menuToggle.addEventListener("click", function (event) {
+        event.stopPropagation();
         mainMenu.classList.toggle("open");
         menuToggle.classList.toggle("open");
     });
 
-    document.addEventListener("click", function (event) {
-        const clickedInsideMenu = mainMenu.contains(event.target);
-        const clickedMenuButton = menuToggle.contains(event.target);
+    mainMenu.addEventListener("click", function (event) {
+        event.stopPropagation();
+    });
 
-        if (!clickedInsideMenu && !clickedMenuButton) {
-            mainMenu.classList.remove("open");
-            menuToggle.classList.remove("open");
-        }
+    document.addEventListener("click", function () {
+        mainMenu.classList.remove("open");
+        menuToggle.classList.remove("open");
     });
 }
 
@@ -200,6 +214,7 @@ if (loginForm) {
 
 async function checkSession() {
     if (!userInfo) {
+        updateCartBadge();
         return;
     }
 
@@ -210,6 +225,7 @@ async function checkSession() {
         const loginLink = document.querySelector("#loginLink");
         const registerLink = document.querySelector("#registerLink");
         const sellerDashboardLink = document.querySelector("#sellerDashboardLink");
+        const cartLink = document.querySelector("#cartLink");
 
         if (result.logged_in) {
             userInfo.textContent = `Welcome, ${result.user.name}. Your role is ${result.user.role}.`;
@@ -229,6 +245,10 @@ async function checkSession() {
             if (sellerDashboardLink) {
                 sellerDashboardLink.hidden = result.user.role !== "seller";
             }
+
+            if (cartLink) {
+                cartLink.hidden = result.user.role === "seller";
+            }
         } else {
             userInfo.textContent = "You are not logged in.";
 
@@ -247,9 +267,16 @@ async function checkSession() {
             if (sellerDashboardLink) {
                 sellerDashboardLink.hidden = true;
             }
+
+            if (cartLink) {
+                cartLink.hidden = false;
+            }
         }
+
+        updateCartBadge();
     } catch (error) {
         userInfo.textContent = "Could not check session.";
+        updateCartBadge();
     }
 }
 
@@ -277,6 +304,8 @@ if (logoutBtn) {
 
                     if (path.includes("/views/seller/")) {
                         window.location.href = "../auth/login.html";
+                    } else if (path.includes("/views/auth/")) {
+                        window.location.href = "login.html";
                     } else {
                         window.location.href = "auth/login.html";
                     }

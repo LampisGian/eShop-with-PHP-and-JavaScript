@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | eShop</title>
+    <title>Cart | eShop</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
     <header class="site-header">
-        <a href="#" id="homeLink" class="brand">
+        <a href="home.html" class="brand">
             <span class="brand-icon">
                 <img src="../assets/images/shop-icon.png" alt="eShop icon">
             </span>
@@ -23,8 +23,8 @@
             </button>
 
             <nav id="mainMenu" class="main-menu">
-                <a href="#" id="homeMenuLink">Home</a>
-                <a href="cart.html" id="cartLink">
+                <a href="home.html">Home</a>
+                <a href="cart.html">
                     Cart <span id="cartBadge" class="cart-badge">0</span>
                 </a>
                 <a href="seller/dashboard.html" id="sellerDashboardLink" hidden>Seller Dashboard</a>
@@ -37,26 +37,41 @@
 
     <main class="home-page">
         <section class="hero">
-            <h2>Welcome to the eShop</h2>
+            <h2>Your Cart</h2>
             <p id="userInfo">Checking session...</p>
         </section>
 
-        <section class="products-section">
-            <div class="section-heading">
-                <div>
-                    <h2>Latest Products</h2>
-                    <p>Browse the newest products uploaded by sellers.</p>
+        <section class="cart-section">
+            <div class="cart-layout">
+                <div class="cart-card">
+                    <h3>Cart Items</h3>
+                    <div id="cartItems" class="cart-items">
+                        <p class="empty-state">Loading cart...</p>
+                    </div>
                 </div>
-            </div>
 
-            <div id="homepageProducts" class="homepage-products-grid">
-                <p class="empty-state">Loading products...</p>
+                <aside class="cart-summary">
+                    <h3>Order Summary</h3>
+
+                    <div class="summary-row">
+                        <span>Items</span>
+                        <strong id="summaryItems">0</strong>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Total</span>
+                        <strong id="summaryTotal">€0.00</strong>
+                    </div>
+
+                    <button id="clearCartBtn" class="secondary-btn">Clear Cart</button>
+                    <button id="checkoutBtn" class="btn">Continue to Checkout</button>
+                </aside>
             </div>
         </section>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../assets/js/auth.js"></script>
-    <script src="../assets/js/products.js"></script>
+    <script src="../assets/js/cart.js"></script>
 </body>
 </html>
