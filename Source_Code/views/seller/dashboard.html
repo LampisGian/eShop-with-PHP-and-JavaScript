@@ -8,12 +8,26 @@
 </head>
 <body>
     <header class="site-header">
-        <h1>eShop Seller</h1>
+        <a href="../home.html" class="brand">
+            <span class="brand-icon">
+                <img src="../../assets/images/shop-icon.png" alt="eShop icon">
+            </span>
+            <span>eShop Seller</span>
+        </a>
 
-        <nav>
-            <a href="../home.html">Home</a>
-            <button id="logoutBtn" class="logout-btn" hidden>Logout</button>
-        </nav>
+        <div class="menu-wrapper">
+            <button id="menuToggle" class="menu-toggle" type="button" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav id="mainMenu" class="main-menu">
+                <a href="../home.html">Home</a>
+                <a href="#" id="sellerDashboardMenuLink">Seller Dashboard</a>
+                <button id="logoutBtn" class="menu-logout-btn" hidden>Logout</button>
+            </nav>
+        </div>
     </header>
 
     <main class="dashboard-page">
@@ -62,7 +76,7 @@
                     <div class="form-group">
                         <label for="image">Product Image</label>
                         <input type="file" id="image" name="image" accept="image/jpeg,image/png,image/webp" required>
-                        <small class="helper-text">Allowed: JPG, PNG, WEBP. Max size: 2MB.</small>
+                        <small class="helper-text">Allowed: JPG, PNG, WEBP. Max size: 5MB.</small>
                     </div>
 
                     <button type="submit" class="btn">Upload Product</button>

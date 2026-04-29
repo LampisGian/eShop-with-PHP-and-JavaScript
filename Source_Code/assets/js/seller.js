@@ -3,6 +3,9 @@ const productForm = document.querySelector("#productForm");
 const categorySelect = document.querySelector("#category_id");
 const productsList = document.querySelector("#productsList");
 const logoutBtn = document.querySelector("#logoutBtn");
+const menuToggle = document.querySelector("#menuToggle");
+const mainMenu = document.querySelector("#mainMenu");
+const sellerDashboardMenuLink = document.querySelector("#sellerDashboardMenuLink");
 
 const API_BASE = "../../api";
 
@@ -20,6 +23,51 @@ function showAlert(type, title, message) {
             title: "custom-alert-title",
             confirmButton: "custom-alert-button"
         }
+    });
+}
+
+function setupMenu() {
+    if (!menuToggle || !mainMenu) {
+        return;
+    }
+
+    menuToggle.addEventListener("click", function (event) {
+        event.stopPropagation();
+
+        mainMenu.classList.toggle("open");
+        menuToggle.classList.toggle("open");
+    });
+
+    mainMenu.addEventListener("click", function (event) {
+        event.stopPropagation();
+    });
+
+    document.addEventListener("click", function () {
+        mainMenu.classList.remove("open");
+        menuToggle.classList.remove("open");
+    });
+}
+
+function setupDashboardLink() {
+    if (!sellerDashboardMenuLink) {
+        return;
+    }
+
+    sellerDashboardMenuLink.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        if (mainMenu) {
+            mainMenu.classList.remove("open");
+        }
+
+        if (menuToggle) {
+            menuToggle.classList.remove("open");
+        }
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     });
 }
 
@@ -58,7 +106,9 @@ async function checkSellerSession() {
             return false;
         }
 
-        sellerInfo.textContent = `Welcome, ${result.user.name}. You can manage your products here.`;
+        if (sellerInfo) {
+            sellerInfo.textContent = `Welcome, ${result.user.name}. You can manage your products here.`;
+        }
 
         if (logoutBtn) {
             logoutBtn.hidden = false;
@@ -66,12 +116,19 @@ async function checkSellerSession() {
 
         return true;
     } catch (error) {
-        sellerInfo.textContent = "Could not check seller session.";
+        if (sellerInfo) {
+            sellerInfo.textContent = "Could not check seller session.";
+        }
+
         return false;
     }
 }
 
 async function loadCategories() {
+    if (!categorySelect) {
+        return;
+    }
+
     try {
         const response = await fetch(`${API_BASE}/get_categories.php`);
         const result = await response.json();
@@ -95,6 +152,10 @@ async function loadCategories() {
 }
 
 async function loadSellerProducts() {
+    if (!productsList) {
+        return;
+    }
+
     try {
         const response = await fetch(`${API_BASE}/get_seller_products.php`);
         const result = await response.json();
@@ -137,7 +198,11 @@ async function loadSellerProducts() {
     }
 }
 
-if (productForm) {
+function setupProductForm() {
+    if (!productForm) {
+        return;
+    }
+
     productForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
@@ -173,7 +238,11 @@ if (productForm) {
     });
 }
 
-if (logoutBtn) {
+function setupLogout() {
+    if (!logoutBtn) {
+        return;
+    }
+
     logoutBtn.addEventListener("click", async function () {
         try {
             await fetch(`${API_BASE}/logout.php`);
@@ -205,6 +274,11 @@ function escapeHtml(value) {
 }
 
 async function initSellerDashboard() {
+    setupMenu();
+    setupDashboardLink();
+    setupProductForm();
+    setupLogout();
+
     const allowed = await checkSellerSession();
 
     if (!allowed) {
