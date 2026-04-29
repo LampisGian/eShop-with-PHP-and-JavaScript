@@ -142,6 +142,17 @@ function removeItem(productId) {
     saveCart(updatedCart);
 }
 
+async function checkCustomerSession() {
+    try {
+        const response = await fetch("../api/session.php");
+        const result = await response.json();
+
+        return result.logged_in && result.user && result.user.role === "customer";
+    } catch (error) {
+        return false;
+    }
+}
+
 if (clearCartBtn) {
     clearCartBtn.addEventListener("click", async function () {
         const cart = getCart();
@@ -171,7 +182,7 @@ if (clearCartBtn) {
 }
 
 if (checkoutBtn) {
-    checkoutBtn.addEventListener("click", function () {
+    checkoutBtn.addEventListener("click", async function () {
         const cart = getCart();
 
         if (!cart.length) {
@@ -187,14 +198,65 @@ if (checkoutBtn) {
             return;
         }
 
-        Swal.fire({
-            icon: "info",
-            title: "Checkout coming next",
-            text: "The next task will connect the cart to checkout using PHP sessions.",
-            confirmButtonColor: "#38bdf8",
-            background: "#111820",
-            color: "#f5f5f0"
-        });
+        const isCustomer = await checkCustomerSession();
+
+        if (!isCustomer) {
+            const result = await Swal.fire({
+                icon: "warning",
+                title: "Login required",
+                text: "Please login as a customer to continue to checkout.",
+                showCancelButton: true,
+                confirmButtonText: "Go to login",
+                cancelButtonText: "Cancel",
+                confirmButtonColor: "#38bdf8",
+                background: "#111820",
+                color: "#f5f5f0"
+            });
+
+            if (result.isConfirmed) {
+                window.location.href = "auth/login.html";
+            }
+
+            return;
+        }
+
+        try {
+            const response = await fetch("../api/save_cart_session.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    cart: cart
+                })
+            });
+
+            const result = await response.json();
+
+            if (!result.success) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Checkout failed",
+                    text: result.message,
+                    confirmButtonColor: "#ef4444",
+                    background: "#111820",
+                    color: "#f5f5f0"
+                });
+
+                return;
+            }
+
+            window.location.href = "checkout.html";
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Connection error",
+                text: "Could not connect cart to checkout.",
+                confirmButtonColor: "#ef4444",
+                background: "#111820",
+                color: "#f5f5f0"
+            });
+        }
     });
 }
 
