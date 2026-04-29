@@ -6,6 +6,8 @@ const logoutBtn = document.querySelector("#logoutBtn");
 const menuToggle = document.querySelector("#menuToggle");
 const mainMenu = document.querySelector("#mainMenu");
 const sellerDashboardMenuLink = document.querySelector("#sellerDashboardMenuLink");
+const menuWelcomeName = document.querySelector("#menuWelcomeName");
+const menuAccountRole = document.querySelector("#menuAccountRole");
 
 const API_BASE = "../../api";
 
@@ -108,6 +110,14 @@ async function checkSellerSession() {
 
         if (sellerInfo) {
             sellerInfo.textContent = `Welcome, ${result.user.name}. You can manage your products here.`;
+        }
+
+        if (menuWelcomeName) {
+            menuWelcomeName.textContent = `Welcome, ${result.user.name}`;
+        }
+
+        if (menuAccountRole) {
+            menuAccountRole.textContent = "Seller account";
         }
 
         if (logoutBtn) {

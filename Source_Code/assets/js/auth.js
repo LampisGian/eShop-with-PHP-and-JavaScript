@@ -213,10 +213,9 @@ if (loginForm) {
 }
 
 async function checkSession() {
-    if (!userInfo) {
-        updateCartBadge();
-        return;
-    }
+    const menuWelcomeName = document.querySelector("#menuWelcomeName");
+    const menuAccountRole = document.querySelector("#menuAccountRole");
+    const profileLink = document.querySelector("#profileLink");
 
     try {
         const response = await fetch(`${API_BASE}/session.php`);
@@ -228,7 +227,21 @@ async function checkSession() {
         const cartLink = document.querySelector("#cartLink");
 
         if (result.logged_in) {
-            userInfo.textContent = `Welcome, ${result.user.name}. Your role is ${result.user.role}.`;
+            if (userInfo) {
+                userInfo.textContent = `Welcome, ${result.user.name}. Your role is ${result.user.role}.`;
+            }
+
+            if (menuWelcomeName) {
+                menuWelcomeName.textContent = `Welcome, ${result.user.name}`;
+            }
+
+            if (menuAccountRole) {
+                menuAccountRole.textContent = `${result.user.role.charAt(0).toUpperCase() + result.user.role.slice(1)} account`;
+            }
+
+            if (profileLink) {
+                profileLink.hidden = false;
+            }
 
             if (logoutBtn) {
                 logoutBtn.hidden = false;
@@ -250,7 +263,21 @@ async function checkSession() {
                 cartLink.hidden = result.user.role === "seller";
             }
         } else {
-            userInfo.textContent = "You are not logged in.";
+            if (userInfo) {
+                userInfo.textContent = "You are not logged in.";
+            }
+
+            if (menuWelcomeName) {
+                menuWelcomeName.textContent = "Welcome, Guest";
+            }
+
+            if (menuAccountRole) {
+                menuAccountRole.textContent = "Guest account";
+            }
+
+            if (profileLink) {
+                profileLink.hidden = true;
+            }
 
             if (logoutBtn) {
                 logoutBtn.hidden = true;
@@ -275,7 +302,10 @@ async function checkSession() {
 
         updateCartBadge();
     } catch (error) {
-        userInfo.textContent = "Could not check session.";
+        if (userInfo) {
+            userInfo.textContent = "Could not check session.";
+        }
+
         updateCartBadge();
     }
 }

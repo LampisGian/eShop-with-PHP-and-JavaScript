@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile | eShop</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <a href="home.html" class="brand">
+            <span class="brand-icon">
+                <img src="../assets/images/shop-icon.png" alt="eShop icon">
+            </span>
+            <span>eShop</span>
+        </a>
+
+        <div class="menu-wrapper">
+            <button id="menuToggle" class="menu-toggle" type="button" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav id="mainMenu" class="main-menu">
+                <div class="menu-user-box" id="menuUserBox">
+                    <strong id="menuWelcomeName">Welcome, Guest</strong>
+                    <small id="menuAccountRole">Guest account</small>
+                </div>
+
+                <a href="home.html">Home</a>
+                <a href="cart.html" id="cartLink">
+                    Cart <span id="cartBadge" class="cart-badge">0</span>
+                </a>
+                <a href="seller/dashboard.html" id="sellerDashboardLink" hidden>Seller Dashboard</a>
+                <a href="profile.html" id="profileLink" hidden>Edit Profile</a>
+                <a href="auth/login.html" id="loginLink">Login</a>
+                <a href="auth/register.html" id="registerLink">Register</a>
+                <button id="logoutBtn" class="menu-logout-btn" hidden>Logout</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="home-page">
+        <section class="hero">
+            <h2>Edit Profile</h2>
+            <p id="userInfo">Checking session...</p>
+        </section>
+
+        <section class="profile-section">
+            <div class="profile-card">
+                <h3>Account Details</h3>
+                <p class="card-subtitle">Update your personal account information.</p>
+
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label for="profileFullName">Full Name</label>
+                        <input type="text" id="profileFullName" name="full_name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profileEmail">Email</label>
+                        <input type="email" id="profileEmail" name="email" required>
+                    </div>
+
+                    <h3 class="form-section-title">Change Password</h3>
+                    <p class="helper-text">Leave these fields empty if you do not want to change your password.</p>
+
+                    <div class="form-group">
+                        <label for="newPassword">New Password</label>
+
+                        <div class="password-field">
+                            <input type="password" id="newPassword" name="new_password" minlength="6">
+
+                            <button type="button" class="toggle-password" data-target="newPassword" aria-label="Show password">
+                                <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M2 12C3.8 7.8 7.5 5 12 5C16.5 5 20.2 7.8 22 12C20.2 16.2 16.5 19 12 19C7.5 19 3.8 16.2 2 12Z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <line class="eye-slash" x1="4" y1="4" x2="20" y2="20"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm New Password</label>
+
+                        <div class="password-field">
+                            <input type="password" id="confirmPassword" name="confirm_password" minlength="6">
+
+                            <button type="button" class="toggle-password" data-target="confirmPassword" aria-label="Show password">
+                                <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M2 12C3.8 7.8 7.5 5 12 5C16.5 5 20.2 7.8 22 12C20.2 16.2 16.5 19 12 19C7.5 19 3.8 16.2 2 12Z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <line class="eye-slash" x1="4" y1="4" x2="20" y2="20"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn">Save Changes</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/profile.js"></script>
+</body>
+</html>
