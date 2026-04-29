@@ -85,6 +85,18 @@ if (registerForm) {
 
         const formData = new FormData(registerForm);
 
+        const password = formData.get("password");
+        const confirmPassword = formData.get("confirm_password");
+
+        if (password !== confirmPassword) {
+            showAlert(
+                "error",
+                "Passwords do not match",
+                "Please make sure both password fields are the same."
+            );
+            return;
+        }
+
         try {
             const response = await fetch(`${API_BASE}/register.php`, {
                 method: "POST",
