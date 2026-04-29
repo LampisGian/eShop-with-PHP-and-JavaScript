@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Controllers\AuthController;
+use App\Core\Session;
 
 header('Content-Type: application/json');
 
@@ -22,7 +23,13 @@ $auth = new AuthController();
 if ($auth->login($email, $password)) {
     echo json_encode([
         'success' => true,
-        'message' => 'Login successful.'
+        'message' => 'Login successful.',
+        'user' => [
+            'id' => Session::get('user_id'),
+            'name' => Session::get('user_name'),
+            'email' => Session::get('user_email'),
+            'role' => Session::get('user_role')
+        ]
     ]);
 } else {
     echo json_encode([

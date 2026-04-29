@@ -142,6 +142,10 @@ if (loginForm) {
             const result = await response.json();
 
             if (result.success) {
+                const redirectUrl = result.user && result.user.role === "seller"
+                    ? "../seller/dashboard.html"
+                    : "../home.html";
+
                 Swal.fire({
                     icon: "success",
                     title: "Welcome back!",
@@ -155,7 +159,7 @@ if (loginForm) {
                         title: "custom-alert-title"
                     }
                 }).then(() => {
-                    window.location.href = "../home.html";
+                    window.location.href = redirectUrl;
                 });
             } else {
                 showAlert("error", "Login failed", result.message);
