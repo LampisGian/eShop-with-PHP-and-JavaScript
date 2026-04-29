@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | eShop</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+    <main class="auth-page">
+        <section class="auth-card">
+            <h1>Create Account</h1>
+            <p class="subtitle">Join the marketplace as a customer or start selling your own products.</p>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="full_name">Full Name</label>
+                    <input type="text" id="full_name" name="full_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+
+                    <div class="password-field">
+                        <input type="password" id="registerPassword" name="password" required minlength="6">
+
+                        <button type="button" class="toggle-password" data-target="registerPassword" aria-label="Show password">
+                            <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M2 12C3.8 7.8 7.5 5 12 5C16.5 5 20.2 7.8 22 12C20.2 16.2 16.5 19 12 19C7.5 19 3.8 16.2 2 12Z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <line class="eye-slash" x1="4" y1="4" x2="20" y2="20"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Account Type</label>
+                    <select id="role" name="role" required>
+                        <option value="customer">Customer</option>
+                        <option value="seller">Seller</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn">Register</button>
+            </form>
+
+            <p class="auth-link">
+                Already have an account?
+                <a href="login.html">Login here</a>
+            </p>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../assets/js/auth.js"></script>
+</body>
+</html>

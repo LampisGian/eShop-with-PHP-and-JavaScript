@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | eShop</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <h1>eShop</h1>
+
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="auth/login.html" id="loginLink">Login</a>
+            <a href="auth/register.html" id="registerLink">Register</a>
+            <button id="logoutBtn" class="logout-btn" hidden>Logout</button>
+        </nav>
+    </header>
+
+    <main class="home-page">
+        <section class="hero">
+            <h2>Welcome to the eShop</h2>
+            <p id="userInfo">Checking session...</p>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../assets/js/auth.js"></script>
+</body>
+</html>
