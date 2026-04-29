@@ -3,11 +3,18 @@ const loginForm = document.querySelector("#loginForm");
 const logoutBtn = document.querySelector("#logoutBtn");
 const userInfo = document.querySelector("#userInfo");
 const homeLink = document.querySelector("#homeLink");
+const homeMenuLink = document.querySelector("#homeMenuLink");
+const menuToggle = document.querySelector("#menuToggle");
+const mainMenu = document.querySelector("#mainMenu");
 
 function getApiBase() {
     const path = window.location.pathname;
 
     if (path.includes("/views/auth/")) {
+        return "../../api";
+    }
+
+    if (path.includes("/views/seller/")) {
         return "../../api";
     }
 
@@ -53,6 +60,23 @@ function showSuccessAndRedirect(title, message, redirectUrl, buttonText = "Conti
         }
     }).then(() => {
         window.location.href = redirectUrl;
+    });
+}
+
+if (menuToggle && mainMenu) {
+    menuToggle.addEventListener("click", function () {
+        mainMenu.classList.toggle("open");
+        menuToggle.classList.toggle("open");
+    });
+
+    document.addEventListener("click", function (event) {
+        const clickedInsideMenu = mainMenu.contains(event.target);
+        const clickedMenuButton = menuToggle.contains(event.target);
+
+        if (!clickedInsideMenu && !clickedMenuButton) {
+            mainMenu.classList.remove("open");
+            menuToggle.classList.remove("open");
+        }
     });
 }
 
@@ -185,6 +209,7 @@ async function checkSession() {
 
         const loginLink = document.querySelector("#loginLink");
         const registerLink = document.querySelector("#registerLink");
+        const sellerDashboardLink = document.querySelector("#sellerDashboardLink");
 
         if (result.logged_in) {
             userInfo.textContent = `Welcome, ${result.user.name}. Your role is ${result.user.role}.`;
@@ -200,6 +225,10 @@ async function checkSession() {
             if (registerLink) {
                 registerLink.hidden = true;
             }
+
+            if (sellerDashboardLink) {
+                sellerDashboardLink.hidden = result.user.role !== "seller";
+            }
         } else {
             userInfo.textContent = "You are not logged in.";
 
@@ -213,6 +242,10 @@ async function checkSession() {
 
             if (registerLink) {
                 registerLink.hidden = false;
+            }
+
+            if (sellerDashboardLink) {
+                sellerDashboardLink.hidden = true;
             }
         }
     } catch (error) {
@@ -240,7 +273,13 @@ if (logoutBtn) {
                         title: "custom-alert-title"
                     }
                 }).then(() => {
-                    window.location.href = "auth/login.html";
+                    const path = window.location.pathname;
+
+                    if (path.includes("/views/seller/")) {
+                        window.location.href = "../auth/login.html";
+                    } else {
+                        window.location.href = "auth/login.html";
+                    }
                 });
             } else {
                 showAlert("error", "Logout failed", "Could not log out. Please try again.");
@@ -255,6 +294,15 @@ if (homeLink) {
     homeLink.addEventListener("click", function (event) {
         event.preventDefault();
         checkSession();
+    });
+}
+
+if (homeMenuLink) {
+    homeMenuLink.addEventListener("click", function (event) {
+        event.preventDefault();
+        checkSession();
+        mainMenu?.classList.remove("open");
+        menuToggle?.classList.remove("open");
     });
 }
 

@@ -19,6 +19,14 @@ class ProductController
         return $this->productModel->getCategories();
     }
 
+    public function getAllProducts(): array
+    {
+        return [
+            "success" => true,
+            "products" => $this->productModel->getAll()
+        ];
+    }
+
     public function getSellerProducts(): array
     {
         Session::start();
@@ -120,19 +128,19 @@ class ProductController
             ];
         }
 
-        $maxSize = 2 * 1024 * 1024;
+        $maxSize = 5 * 1024 * 1024;
 
         if ($image["size"] > $maxSize) {
             return [
                 "success" => false,
-                "message" => "Image size must be less than 2MB."
+                "message" => "Image size must be less than 5MB."
             ];
         }
 
         $extension = $allowedTypes[$mimeType];
         $safeName = uniqid("product_", true) . "." . $extension;
 
-        $uploadDir = __DIR__ . "/../../images/products/";
+        $uploadDir = dirname(__DIR__, 2) . "/images/products/";
 
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);

@@ -8,14 +8,28 @@
 </head>
 <body>
     <header class="site-header">
-        <h1>eShop</h1>
+        <a href="#" id="homeLink" class="brand">
+            <span class="brand-icon">
+                <img src="../assets/images/shop-icon.png" alt="eShop icon">
+            </span>
+            <span>eShop</span>
+        </a>
 
-        <nav>
-            <a href="home.html">Home</a>
-            <a href="auth/login.html" id="loginLink">Login</a>
-            <a href="auth/register.html" id="registerLink">Register</a>
-            <button id="logoutBtn" class="logout-btn" hidden>Logout</button>
-        </nav>
+        <div class="menu-wrapper">
+            <button id="menuToggle" class="menu-toggle" type="button" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav id="mainMenu" class="main-menu">
+                <a href="#" id="homeMenuLink">Home</a>
+                <a href="seller/dashboard.html" id="sellerDashboardLink" hidden>Seller Dashboard</a>
+                <a href="auth/login.html" id="loginLink">Login</a>
+                <a href="auth/register.html" id="registerLink">Register</a>
+                <button id="logoutBtn" class="menu-logout-btn" hidden>Logout</button>
+            </nav>
+        </div>
     </header>
 
     <main class="home-page">
@@ -23,9 +37,23 @@
             <h2>Welcome to the eShop</h2>
             <p id="userInfo">Checking session...</p>
         </section>
+
+        <section class="products-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Latest Products</h2>
+                    <p>Browse the newest products uploaded by sellers.</p>
+                </div>
+            </div>
+
+            <div id="homepageProducts" class="homepage-products-grid">
+                <p class="empty-state">Loading products...</p>
+            </div>
+        </section>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/products.js"></script>
 </body>
 </html>

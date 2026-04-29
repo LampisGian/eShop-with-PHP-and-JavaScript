@@ -66,6 +66,28 @@ class Product
         return $stmt->fetchAll();
     }
 
+    public function getAll(): array
+    {
+        $sql = "SELECT 
+                    products.id,
+                    products.title,
+                    products.description,
+                    products.price,
+                    products.stock,
+                    products.image,
+                    products.created_at,
+                    categories.name AS category_name,
+                    users.full_name AS seller_name
+                FROM products
+                LEFT JOIN categories ON products.category_id = categories.id
+                LEFT JOIN users ON products.seller_id = users.id
+                ORDER BY products.created_at DESC";
+
+        $stmt = $this->db->query($sql);
+
+        return $stmt->fetchAll();
+    }
+
     public function getCategories(): array
     {
         $sql = "SELECT id, name FROM categories ORDER BY name ASC";
