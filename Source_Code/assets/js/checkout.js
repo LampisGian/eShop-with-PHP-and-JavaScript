@@ -1,3 +1,5 @@
+const CART_KEY = "eshop_cart";
+
 const checkoutItems = document.querySelector("#checkoutItems");
 const checkoutTotal = document.querySelector("#checkoutTotal");
 const checkoutForm = document.querySelector("#checkoutForm");
@@ -94,34 +96,55 @@ if (countrySelect && phoneCodeSelect) {
 }
 
 if (checkoutForm) {
-    checkoutForm.addEventListener("submit", function (event) {
+    checkoutForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
         const formData = new FormData(checkoutForm);
 
-        const streetAddress = formData.get("street_address");
-        const city = formData.get("city");
-        const postalCode = formData.get("postal_code");
-        const country = formData.get("country");
-        const phoneCode = formData.get("phone_code");
-        const phoneNumber = formData.get("phone_number");
+        try {
+            const response = await fetch("../api/place_order.php", {
+                method: "POST",
+                body: formData
+            });
 
-        const fullShippingAddress = `${streetAddress}, ${postalCode} ${city}, ${country}`;
-        const fullPhone = `${phoneCode} ${phoneNumber}`;
+            const result = await response.json();
 
-        Swal.fire({
-            icon: "info",
-            title: "Order storage comes next",
-            html: `
-                <p>The cart is now connected to PHP session.</p>
-                <p><strong>Shipping:</strong> ${escapeHtml(fullShippingAddress)}</p>
-                <p><strong>Phone:</strong> ${escapeHtml(fullPhone)}</p>
-                <p>The next task will store the order in MySQL.</p>
-            `,
-            confirmButtonColor: "#38bdf8",
-            background: "#111820",
-            color: "#f5f5f0"
-        });
+            if (!result.success) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Order failed",
+                    text: result.message,
+                    confirmButtonColor: "#ef4444",
+                    background: "#111820",
+                    color: "#f5f5f0"
+                });
+
+                return;
+            }
+
+            localStorage.removeItem(CART_KEY);
+
+            await Swal.fire({
+                icon: "success",
+                title: "Order completed!",
+                text: `Your order number is #${result.order_id}.`,
+                confirmButtonText: "Back to home",
+                confirmButtonColor: "#22c55e",
+                background: "#111820",
+                color: "#f5f5f0"
+            });
+
+            window.location.href = "home.html";
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Connection error",
+                text: "Could not place the order. Please try again.",
+                confirmButtonColor: "#ef4444",
+                background: "#111820",
+                color: "#f5f5f0"
+            });
+        }
     });
 }
 
