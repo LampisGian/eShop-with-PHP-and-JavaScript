@@ -138,11 +138,11 @@ Generate a new SMTP key
 ```
 
 Then create the following file inside the project:
-'''text 
-Source_Code/config/mail.php'''
+```text 
+Source_Code/config/mail.php```
 
 Add the SMTP configuration:
-'''text 
+```text 
 <?php
 
 return [
@@ -152,7 +152,7 @@ return [
     'password' => 'YOUR_BREVO_SMTP_KEY',
     'from_email' => 'YOUR_VERIFIED_SENDER_EMAIL',
     'from_name' => 'eShop Project'
-];'''
+];```
 
 The username value must be the SMTP login provided by Brevo.
 The password value must be the SMTP key, not the normal Brevo account password.
