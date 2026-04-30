@@ -30,6 +30,15 @@ function updateCartBadge() {
     cartBadge.hidden = totalItems === 0;
 }
 
+function normalizeImagePath(imagePath) {
+    return String(imagePath || "").replace(/^\/+/, "");
+}
+
+function getImageSrc(imagePath) {
+    const cleanPath = normalizeImagePath(imagePath);
+    return `../${cleanPath}`;
+}
+
 function renderCart() {
     const cart = getCart();
 
@@ -57,7 +66,7 @@ function renderCart() {
         cartItem.className = "cart-item";
 
         cartItem.innerHTML = `
-            <img src="../${item.image}" alt="${escapeHtml(item.title)}">
+            <img src="${getImageSrc(item.image)}" alt="${escapeHtml(item.title)}">
 
             <div class="cart-item-content">
                 <h4>${escapeHtml(item.title)}</h4>

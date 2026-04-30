@@ -39,6 +39,15 @@ function updateCartBadge() {
     cartBadge.hidden = totalItems === 0;
 }
 
+function normalizeImagePath(imagePath) {
+    return String(imagePath || "").replace(/^\/+/, "");
+}
+
+function getImageSrc(imagePath) {
+    const cleanPath = normalizeImagePath(imagePath);
+    return `../${cleanPath}`;
+}
+
 function addToCart(product) {
     const cart = getCart();
     const existingItem = cart.find((item) => Number(item.id) === Number(product.id));
@@ -50,7 +59,7 @@ function addToCart(product) {
             id: Number(product.id),
             title: product.title,
             price: Number(product.price),
-            image: product.image,
+            image: normalizeImagePath(product.image),
             stock: Number(product.stock),
             quantity: 1
         });
@@ -96,7 +105,7 @@ async function loadHomepageProducts() {
             const productCard = document.createElement("article");
             productCard.className = "homepage-product-card";
 
-            const imageSrc = `../${product.image}`;
+            const imageSrc = getImageSrc(product.image);
             const stockNumber = Number(product.stock);
             const stockLabel = stockNumber > 0 ? `${stockNumber} in stock` : "Out of stock";
 
@@ -183,6 +192,8 @@ function setupAddToCartButtons() {
             }
 
             const product = JSON.parse(button.dataset.product.replaceAll("&apos;", "'"));
+            product.image = normalizeImagePath(product.image);
+
             addToCart(product);
         });
     });

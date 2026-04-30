@@ -28,6 +28,15 @@ function showAlert(type, title, message) {
     });
 }
 
+function normalizeImagePath(imagePath) {
+    return String(imagePath || "").replace(/^\/+/, "");
+}
+
+function getImageSrc(imagePath) {
+    const cleanPath = normalizeImagePath(imagePath);
+    return `../../${cleanPath}`;
+}
+
 function setupMenu() {
     if (!menuToggle || !mainMenu) {
         return;
@@ -186,7 +195,7 @@ async function loadSellerProducts() {
             const productCard = document.createElement("article");
             productCard.className = "seller-product-card";
 
-            const imageSrc = `../../${product.image}`;
+            const imageSrc = getImageSrc(product.image);
 
             productCard.innerHTML = `
                 <img src="${imageSrc}" alt="${escapeHtml(product.title)}">

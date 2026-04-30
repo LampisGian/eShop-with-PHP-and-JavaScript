@@ -8,6 +8,15 @@ const customerEmail = document.querySelector("#customerEmail");
 const countrySelect = document.querySelector("#country");
 const phoneCodeSelect = document.querySelector("#phoneCode");
 
+function normalizeImagePath(imagePath) {
+    return String(imagePath || "").replace(/^\/+/, "");
+}
+
+function getImageSrc(imagePath) {
+    const cleanPath = normalizeImagePath(imagePath);
+    return `../${cleanPath}`;
+}
+
 async function loadCheckoutSession() {
     try {
         const response = await fetch("../api/get_cart_session.php");
@@ -57,7 +66,7 @@ function renderCheckout(cart, total) {
         checkoutItem.className = "checkout-item";
 
         checkoutItem.innerHTML = `
-            <img src="../${item.image}" alt="${escapeHtml(item.title)}">
+            <img src="${getImageSrc(item.image)}" alt="${escapeHtml(item.title)}">
 
             <div>
                 <h4>${escapeHtml(item.title)}</h4>
