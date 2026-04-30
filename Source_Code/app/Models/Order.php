@@ -27,6 +27,32 @@ class Order
         try {
             $this->db->beginTransaction();
 
+            foreach ($cartItems as $item) {
+                $productId = (int) $item["id"];
+                $quantity = (int) $item["quantity"];
+
+                $stockSql = "SELECT stock FROM products WHERE id = :product_id FOR UPDATE";
+                $stockStmt = $this->db->prepare($stockSql);
+
+                $stockStmt->execute([
+                    "product_id" => $productId
+                ]);
+
+                $product = $stockStmt->fetch();
+
+                if (!$product) {
+                    $this->db->rollBack();
+                    return 0;
+                }
+
+                $currentStock = (int) $product["stock"];
+
+                if ($currentStock < $quantity) {
+                    $this->db->rollBack();
+                    return 0;
+                }
+            }
+
             $orderSql = "INSERT INTO orders 
                 (customer_id, customer_name, customer_email, shipping_address, phone, total_price, status)
                 VALUES 
@@ -53,12 +79,26 @@ class Order
 
             $itemStmt = $this->db->prepare($itemSql);
 
+            $updateStockSql = "UPDATE products
+                SET stock = stock - :quantity
+                WHERE id = :product_id";
+
+            $updateStockStmt = $this->db->prepare($updateStockSql);
+
             foreach ($cartItems as $item) {
+                $productId = (int) $item["id"];
+                $quantity = (int) $item["quantity"];
+
                 $itemStmt->execute([
                     "order_id" => $orderId,
-                    "product_id" => (int) $item["id"],
-                    "quantity" => (int) $item["quantity"],
+                    "product_id" => $productId,
+                    "quantity" => $quantity,
                     "price" => (float) $item["price"]
+                ]);
+
+                $updateStockStmt->execute([
+                    "quantity" => $quantity,
+                    "product_id" => $productId
                 ]);
             }
 
@@ -66,7 +106,10 @@ class Order
 
             return $orderId;
         } catch (Exception $e) {
-            $this->db->rollBack();
+            if ($this->db->inTransaction()) {
+                $this->db->rollBack();
+            }
+
             return 0;
         }
     }
