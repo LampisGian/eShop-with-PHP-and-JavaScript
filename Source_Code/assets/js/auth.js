@@ -365,4 +365,25 @@ if (homeMenuLink) {
     });
 }
 
+function setActiveMenuItem() {
+    const currentPath = window.location.pathname;
+    const menuLinks = document.querySelectorAll(".main-menu a");
+
+    menuLinks.forEach((link) => {
+        const href = link.getAttribute("href");
+
+        if (!href || href === "#") {
+            return;
+        }
+
+        const normalizedHref = href.replace("../", "").replace("./", "");
+
+        if (currentPath.includes(normalizedHref)) {
+            link.classList.add("active-menu-item");
+        }
+    });
+}
+
+setActiveMenuItem();
+
 checkSession();
