@@ -130,9 +130,3 @@ class ProfileController
         ];
     }
 }
-
-// This file defines the ProfileController class, which handles user profile operations such as retrieving and updating profile information. 
-// It interacts with the User model to perform database operations related to user profiles and uses the Session 
-// class to manage user sessions and control access to profile features. The controller includes methods 
-// for getting the current user's profile information and updating the profile with new data, including 
-// validation of input and handling of password changes.

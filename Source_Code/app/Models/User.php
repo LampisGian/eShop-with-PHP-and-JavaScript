@@ -107,9 +107,3 @@ class User
         ]);
     }
 }
-
-// This file defines the User class, which is responsible for handling user-related operations in the application. 
-// The class includes methods for creating a new user, finding a user by email or ID, checking if an email is already used by another user, and updating a user's profile information. 
-// It interacts with the database using PDO to perform these operations and is essential for managing user accounts,
-//  authentication and profile management in the e-commerce application. The class ensures that user data is securely 
-// stored and provides the necessary functionality for user registration and profile updates.

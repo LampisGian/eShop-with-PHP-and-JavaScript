@@ -76,7 +76,3 @@ class AuthController
     }
 }
 
-// This file defines the AuthController class, which handles user authentication and session management. 
-// It provides methods for user registration, login, logout, and checking the user's authentication status and role. 
-//The controller interacts with the User model to perform database operations related to user accounts and uses the Session class to manage user sessions. 
-//This controller is essential for securing the application and controlling access to features based on user roles.

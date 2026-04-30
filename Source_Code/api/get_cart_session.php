@@ -1,8 +1,3 @@
-// This API endpoint retrieves the current checkout cart session for the logged-in customer. 
-// It checks if the user is logged in and has a customer role, then returns the cart items and total amount in a 
-//JSON response. If the user is not logged in or the cart session is empty, it returns an appropriate error message. 
-//This endpoint is used by the checkout page to display the cart summary before placing an order.
-
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';

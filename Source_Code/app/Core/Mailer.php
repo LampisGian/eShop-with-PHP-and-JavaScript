@@ -141,8 +141,3 @@ class Mailer
         return $text;
     }
 }
-
-// This file defines the Mailer class, which is responsible for sending order confirmation emails to customers. 
-// It uses the PHPMailer library to send emails via SMTP and includes methods for building both HTML and plain text versions of the order confirmation email. 
-// The sendOrderConfirmation method takes the customer's email, name, order ID, total price, and cart items as parameters and attempts to send an email with the order details. 
-// If the email is sent successfully, it returns true; otherwise, it returns false. The class also loads email configuration settings from a separate config file, allowing for easy customization of the email sending process.

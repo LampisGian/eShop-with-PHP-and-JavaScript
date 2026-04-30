@@ -34,8 +34,3 @@ class Database
         return $this->connection;
     }
 }
-
-// This file defines the Database class, which is responsible for establishing a connection to the MySQL database using PDO. 
-// It includes properties for the database connection parameters and a method to connect to the database. 
-// The connect method checks if a connection already exists and creates a new one if it doesn't, while also setting error handling and fetch mode attributes for the PDO instance. 
-// This class is essential for managing database interactions throughout the application, allowing other classes to easily access the database connection when needed.
