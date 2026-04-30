@@ -124,7 +124,49 @@ composer dump-autoload
 
 ---
 
-### 5. Open the Application
+### 5. Configure SMTP Email Settings
+
+The project uses PHPMailer with Brevo SMTP to send order confirmation emails after a successful checkout.
+
+First, create a Brevo account and generate an SMTP key from the Brevo dashboard:
+
+```text
+Brevo Dashboard
+SMTP & API
+SMTP
+Generate a new SMTP key
+```
+
+Then create the following file inside the project:
+'''text 
+Source_Code/config/mail.php'''
+
+Add the SMTP configuration:
+'''text 
+<?php
+
+return [
+    'host' => 'smtp-relay.brevo.com',
+    'port' => 587,
+    'username' => 'YOUR_BREVO_SMTP_LOGIN',
+    'password' => 'YOUR_BREVO_SMTP_KEY',
+    'from_email' => 'YOUR_VERIFIED_SENDER_EMAIL',
+    'from_name' => 'eShop Project'
+];'''
+
+The username value must be the SMTP login provided by Brevo.
+The password value must be the SMTP key, not the normal Brevo account password.
+The from_email value must be a verified sender email from Brevo.
+
+This file contains sensitive credentials, so it must not be uploaded to GitHub.
+Make sure it is included in .gitignore:
+
+```text
+http://localhost/eShop-with-PHP-and-JavaScript/Source_Code/views/home.html
+```
+---
+
+### 6. Open the Application
 
 Open the homepage:
 
