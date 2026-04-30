@@ -144,41 +144,41 @@ The following screenshots show the main pages and features of the platform.
 
 The homepage displays the available products, product images, stock information and product details.
 
-![Screenshot](screenshots/homescreen.png)
+![Screenshot](Screenshots/homescreen.png)
 
 ### Login Page
 
 The login page allows customers and sellers to access their accounts.
 
-![Screenshot](screenshots/login.png)
+![Screenshot](Screenshots/login.png)
 
 ### Register Page
 
 The register page allows new users to create either a customer or seller account.
 
-![Screenshot](screenshots/register.png)
+![Screenshot](Screenshots/register.png)
 
 ### Seller Dashboard
 
 The seller dashboard allows sellers to upload products, select categories and manage uploaded product images.
 
-![Screenshot](screenshots/seller.png)
+![Screenshot](Screenshots/seller.png)
 
 ### Shopping Cart
 
 The cart page displays selected products, quantities, item totals and the final cart total.
 
-![Screenshot](screenshots/cart.png)
+![Screenshot](Screenshots/cart.png)
 
 ### Checkout Page
 
 The checkout page collects customer details, shipping information and shows the final order summary.
 
-![Screenshot](screenshots/ckeckout.png)
+![Screenshot](Screenshots/ckeckout.png)
 
 ### Edit Profile Page
 
 The profile page allows logged-in users to update their account details.
 
-![Screenshot](screenshots/edit.png)
+![Screenshot](Screenshots/edit.png)
 
