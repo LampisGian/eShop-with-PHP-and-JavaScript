@@ -133,3 +133,52 @@ http://localhost/eShop-with-PHP-and-JavaScript/Source_Code/views/home.html
 ```
 
 ---
+
+---
+
+## Screenshots
+
+The following screenshots show the main pages and features of the platform.
+
+### Homepage
+
+The homepage displays the available products, product images, stock information and product details.
+
+![Homepage](screenshots/homescreen.png)
+
+### Login Page
+
+The login page allows customers and sellers to access their accounts.
+
+![Homepage](screenshots/login.png)
+
+### Register Page
+
+The register page allows new users to create either a customer or seller account.
+
+![Homepage](screenshots/register.png)
+
+### Seller Dashboard
+
+The seller dashboard allows sellers to upload products, select categories and manage uploaded product images.
+
+![Homepage](screenshots/seller.png)
+
+### Shopping Cart
+
+The cart page displays selected products, quantities, item totals and the final cart total.
+
+![Homepage](screenshots/cart.png)
+
+### Checkout Page
+
+The checkout page collects customer details, shipping information and shows the final order summary.
+
+![Homepage](screenshots/ckeckout.png)
+
+### Edit Profile Page
+
+The profile page allows logged-in users to update their account details.
+
+![Homepage](screenshots/edit.png)
+
