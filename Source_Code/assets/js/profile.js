@@ -1,3 +1,9 @@
+// This file manages the user profile functionality for the e-commerce application. It loads the user's 
+// profile details from the server and populates the profile form fields. The script also handles the 
+// submission of the profile update form, allowing users to change their full name, email, and password. 
+// It includes validation to ensure that the new password and confirm password fields match before sending the 
+// update request to the server.
+
 const profileForm = document.querySelector("#profileForm");
 const profileFullName = document.querySelector("#profileFullName");
 const profileEmail = document.querySelector("#profileEmail");

@@ -119,3 +119,9 @@ class OrderController
         ];
     }
 }
+
+// This file defines the OrderController class, which handles the order placement process. 
+// It checks if the user is logged in as a customer, validates the checkout cart session,
+// processes the order by creating a new order record in the database, and sends a confirmation email to the customer. 
+// The controller interacts with the Order model to perform database operations related to orders and uses 
+// the Mailer class to send emails. It also manages the checkout session data to ensure a smooth checkout experience for the user.

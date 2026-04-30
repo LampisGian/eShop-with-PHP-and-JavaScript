@@ -1,3 +1,8 @@
+// This file contains the configuration settings for the mail server used in the e-commerce application. 
+// It includes the SMTP host, port, username, password, and default sender information (email and name).   
+//These settings are essential for enabling the application to send emails, such as order confirmations, 
+//password resets, and other notifications to users. The configuration is returned as an associative array 
+//that can be accessed throughout the application whenever email functionality is required.
 <?php
 
 return [

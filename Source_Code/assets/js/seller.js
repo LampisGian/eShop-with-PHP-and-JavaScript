@@ -1,3 +1,11 @@
+// This file manages the seller dashboard functionality for the e-commerce application. It checks the seller's 
+// session on page load to ensure that only authenticated sellers can access the dashboard. The script loads 
+// the seller's products and available categories from the server, allowing sellers to manage their product 
+// listings. It also handles the submission of the product upload form, enabling sellers to add new products 
+// to their catalog. Additionally, the script includes functionality for logging out and updating the navigation 
+// menu based on the user's session status. Utility functions are provided for displaying alerts, normalizing image 
+// paths, and escaping HTML to prevent XSS attacks when rendering product information.
+
 const sellerInfo = document.querySelector("#sellerInfo");
 const productForm = document.querySelector("#productForm");
 const categorySelect = document.querySelector("#category_id");

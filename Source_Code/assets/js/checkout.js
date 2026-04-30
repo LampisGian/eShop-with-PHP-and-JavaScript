@@ -1,3 +1,8 @@
+// This file manages the checkout process for the e-commerce application. It loads the current cart session from the server, renders the checkout items and total price, and handles the submission of the checkout form. The script also includes functionality to update the phone code based on the selected country and to display alerts using SweetAlert2 for various scenarios such as loading errors, order placement success or failure, and connection issues. The cart data is fetched from the server to ensure that it reflects any changes made by the user before proceeding to checkout, and the form submission sends the order details to the server for processing.
+// The script also includes utility functions for normalizing image paths and escaping HTML to prevent XSS attacks when rendering the checkout items. 
+// Overall, this file is essential for managing the checkout experience and ensuring that users can successfully 
+// place their orders while providing feedback on the process.
+
 const CART_KEY = "eshop_cart";
 
 const checkoutItems = document.querySelector("#checkoutItems");

@@ -1,3 +1,7 @@
+// This file manages the product listing and details functionality for the e-commerce application. It loads products from the server, renders them on the homepage, and allows users to view product details in a modal. Customers can add products to their cart directly from the homepage or the product details modal. The script also checks the user's session status to determine if they are logged in and their role, which affects whether they can add products to the cart.
+// It includes utility functions for normalizing image paths and escaping HTML to prevent XSS attacks. 
+// The script uses SweetAlert2 for displaying alerts and confirmations to the user in a visually appealing way.
+
 const homepageProducts = document.querySelector("#homepageProducts");
 const CART_KEY = "eshop_cart";
 

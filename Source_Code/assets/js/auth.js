@@ -1,3 +1,8 @@
+// This file handles user authentication and session management for the e-commerce application. It includes event listeners for login and registration forms, as well as a logout button. 
+// The script checks the user's session on page load to update the UI accordingly, showing or hiding menu items based on the user's authentication status and role. 
+// It also provides utility functions for displaying alerts and updating the cart badge in the navigation menu. 
+// The API base URL is determined dynamically based on the current page's location to ensure that API requests are correctly routed regardless of the directory structure of the views.
+
 const registerForm = document.querySelector("#registerForm");
 const loginForm = document.querySelector("#loginForm");
 const logoutBtn = document.querySelector("#logoutBtn");

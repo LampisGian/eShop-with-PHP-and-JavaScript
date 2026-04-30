@@ -1,3 +1,8 @@
+// API endpoint to save the cart data into the session for checkout
+// This endpoint is called when the user clicks the "Proceed to Checkout" button on the cart page. 
+//It receives the cart data from the frontend, validates it, and saves it into the session. 
+//This allows the checkout page to retrieve the cart data and display it to the user before placing the order.
+
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';

@@ -97,3 +97,10 @@ class Product
         return $stmt->fetchAll();
     }
 }
+
+// This file defines the Product class, which is responsible for handling product-related operations in the application. 
+// The class includes methods for creating a new product, retrieving products by seller, fetching all products, \
+// and getting product categories. It interacts with the database using PDO to perform these operations and is
+//  essential for managing the product catalog in the e-commerce application. The class ensures that products
+//  are associated with sellers and categories, and it provides the necessary functionality to display 
+// products to customers and allow sellers to manage their listings.

@@ -1,3 +1,8 @@
+// API endpoint to test email sending functionality
+// This endpoint is used to verify that the email configuration is correct and that the application can send 
+//emails successfully. It sends a test email to the configured email address and returns a JSON response indicating whether
+// the email was sent successfully.
+
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';

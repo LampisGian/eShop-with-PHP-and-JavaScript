@@ -1,3 +1,7 @@
+// This file manages the shopping cart functionality for the e-commerce application. It allows users to view their cart items, update quantities, remove items, and proceed to checkout. The cart data is stored in the browser's localStorage, and the script includes functions to render the cart items on the page, handle user interactions with the cart, and check the user's session status before allowing them to proceed to checkout. 
+// It also includes utility functions for normalizing image paths and escaping HTML to prevent XSS attacks. 
+// The script uses SweetAlert2 for displaying alerts and confirmations to the user in a visually appealing way.
+
 const CART_KEY = "eshop_cart";
 
 const cartItemsContainer = document.querySelector("#cartItems");

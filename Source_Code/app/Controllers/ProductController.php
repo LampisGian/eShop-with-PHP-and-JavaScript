@@ -161,3 +161,9 @@ class ProductController
         ];
     }
 }
+
+// This file defines the ProductController class, which handles product-related operations such as retrieving categories, fetching products, and creating new products. 
+// It interacts with the Product model to perform database operations and uses the Session class to manage user 
+//sessions and control access to certain features based on user roles. The controller also includes a 
+// private method for handling image uploads, ensuring that only valid images are accepted and stored
+//  securely on the server.

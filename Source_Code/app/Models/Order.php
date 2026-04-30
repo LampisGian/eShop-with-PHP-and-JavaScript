@@ -114,3 +114,11 @@ class Order
         }
     }
 }
+
+// This file defines the Order class, which is responsible for handling order-related operations in the application. 
+// The class includes a method to create a new order, which involves validating the stock 
+// for each product in the cart, inserting a new order record into the database, and 
+// updating the stock of the products accordingly. The method uses transactions to 
+// ensure data integrity and rolls back if any part of the process fails. This class is essential for 
+// managing the order placement process and ensuring that orders are processed correctly while maintaining 
+// accurate stock levels in the database.

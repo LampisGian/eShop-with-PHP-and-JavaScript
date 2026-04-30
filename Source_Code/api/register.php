@@ -1,3 +1,8 @@
+// API endpoint for user registration
+// This endpoint is called by the registration form to create a new user account. 
+//It validates the input data, checks for existing users with the same email, and if everything is valid, 
+//it creates a new user record in the database. It returns a JSON response indicating success
+
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
