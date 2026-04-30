@@ -138,11 +138,12 @@ Generate a new SMTP key
 ```
 
 Then create the following file inside the project:
-```text 
-Source_Code/config/mail.php```
+
+`Source_Code/config/mail.php`
 
 Add the SMTP configuration:
-```text 
+
+```php
 <?php
 
 return [
@@ -152,14 +153,15 @@ return [
     'password' => 'YOUR_BREVO_SMTP_KEY',
     'from_email' => 'YOUR_VERIFIED_SENDER_EMAIL',
     'from_name' => 'eShop Project'
-];```
+];
+```
 
 The username value must be the SMTP login provided by Brevo.
 The password value must be the SMTP key, not the normal Brevo account password.
 The from_email value must be a verified sender email from Brevo.
 
 This file contains sensitive credentials, so it must not be uploaded to GitHub.
-Make sure it is included in .gitignore:
+Make sure it is included in `.gitignore`:
 
 ```text
 http://localhost/eShop-with-PHP-and-JavaScript/Source_Code/views/home.html
