@@ -1,33 +1,135 @@
 # eShop with PHP and JavaScript
 
-## Description
-This project consists of building a simple yet fully functional online store using PHP and JavaScript. The eShop allows users to browse products, add them to a cart, and complete a purchase through a checkout page. The system must support two types of accounts: customers and sellers. Sellers will have access to a private area where they can upload products, including images, descriptions, prices, and stock quantities. Customers can register, log in, add products to their cart, and complete purchases.
+A modern e-commerce web application built with PHP, JavaScript, MySQL, HTML and CSS.  
+The platform supports customer and seller accounts, product uploads, product images, a client-side shopping cart, checkout, order storage and email confirmation.
 
-This project is designed to simulate a basic e-commerce platform and will run entirely on a local machine using WAMP (Windows, Apache, MySQL, PHP). The backend is developed in PHP, and the frontend will use HTML, CSS, and JavaScript (with optional use of frameworks like Bootstrap or jQuery).
-We will also use Composer to manage PHP packages.
+The project was developed as part of an internship task focused on building a complete eShop system using core web technologies and a structured backend architecture.
 
-## Getting Started
-1. Clone this repository or download the files.
-2. Install WAMP on your local machine.
-3. Install Node.js
-4. Install Composer
-5. Enable MySQL and Apache services.
-6. Recommended: use VS Code or any PHP-compatible IDE.
+---
 
-Keep in mind that the code must be written in OOP.
+## Project Overview
 
-## Tasks
-- Design the database structure with appropriate tables:??
-- Implement authentication for customers and sellers.
-- Create registration and login forms.
-- Implement seller dashboard to upload product data and to upload and manage product images.
-- Display products on homepage.
-- Implement shopping cart using JavaScript (client-side)
-- Connect cart to checkout page using PHP session
-- Handle checkout, store order in MySQL
-- Show product images correctly from `/images`
-- Style the entire platform
-- Test all functionality with different user types
-- Final testing. Create README with instructions and screenshots. Submit as Git repo.
+This project simulates a small online marketplace where sellers can upload products and customers can browse, add products to their cart and complete orders.
 
-## Estimated time to work 2 weeks
+The system includes:
+
+- Customer and seller registration
+- Login and logout system
+- Password hashing
+- Session-based authentication
+- Seller dashboard
+- Product upload with image support
+- Product listing on the homepage
+- Shopping cart using JavaScript and `localStorage`
+- Checkout flow connected to PHP sessions
+- Order storage in MySQL
+- Order items storage in MySQL
+- Stock reduction after completed orders
+- Email confirmation using SMTP
+- Profile editing for logged-in users
+- Modern responsive UI
+
+---
+
+## Technologies Used
+
+The project uses the following technologies:
+
+- PHP
+- JavaScript
+- MySQL
+- phpMyAdmin
+- HTML5
+- CSS3
+- XAMPP
+- Composer
+- PHPMailer
+- Brevo SMTP
+- SweetAlert2
+
+---
+## Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/LampisGian/eShop-with-PHP-and-JavaScript.git
+```
+
+Move the project inside the XAMPP `htdocs` folder:
+
+```text
+/Applications/XAMPP/xamppfiles/htdocs/
+```
+
+---
+
+### 2. Start XAMPP
+
+Start the following services:
+
+- Apache
+- MySQL
+
+Then open phpMyAdmin:
+
+```text
+http://localhost/phpmyadmin
+```
+
+---
+
+### 3. Create the Database
+
+Create a new database in phpMyAdmin.
+
+Example database name:
+
+```text
+eshop_db
+```
+
+Then import the provided SQL file:
+```text
+eshop_db.sql
+```
+This file contains the full database structure and ready-made demo data, including:
+
+* User accounts
+* Customer accounts
+* Seller accounts
+* Product categories
+* Demo products
+* Product image paths
+
+After importing eshop_db.sql, the application will already have test accounts and products available, so the platform can be tested immediately without manually creating users or products.
+
+
+---
+
+### 4. Install Composer Dependencies
+
+Open the terminal inside the `Source_Code` folder:
+
+```bash
+cd /Applications/XAMPP/xamppfiles/htdocs/eShop-with-PHP-and-JavaScript/Source_Code
+composer install
+```
+
+If dependencies are already installed, you can refresh the autoload files with:
+
+```bash
+composer dump-autoload
+```
+
+---
+
+### 5. Open the Application
+
+Open the homepage:
+
+```text
+http://localhost/eShop-with-PHP-and-JavaScript/Source_Code/views/home.html
+```
+
+---
